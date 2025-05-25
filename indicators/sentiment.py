@@ -1,5 +1,4 @@
 # indicators/sentiment.py
-# indicators/sentiment.py
 import pandas as pd
 
 def calculate_sentiment(data, overbought=70, oversold=30):

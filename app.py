@@ -2,7 +2,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
-from config import settings, file_paths  # Import file paths
+from config import settings
 from utils import mt5_initializer
 from data import data_loader
 from indicators import sma, rsi, macd, liquidity, order_blocks, adx, sentiment
@@ -16,23 +16,18 @@ data_source = st.radio("Select Data Source", ["MT5", "CSV"])
 time_frame = st.selectbox("Select Time Frame", ["M1", "H1", "D1"])
 
 if data_source == "CSV":
-    # Load historical data from CSV based on selected time frame
-    file_path = file_paths.CSV_FILE_PATHS.get(time_frame)
-    if file_path:
-        data = data_loader.load_from_csv(file_path)
-    else:
-        st.error(f"No CSV file configured for {time_frame} time frame")
-        st.stop()
+    uploaded_file = st.file_uploader("Upload Historical Data (CSV)", type=["csv"])
+    if uploaded_file is not None:
+        data = data_loader.load_from_csv(uploaded_file)
 else:
-    # Load real-time data from MT5
     symbol = st.selectbox("Select Symbol", settings.SYMBOLS)
+    if not mt5_initializer.initialize_mt5():
+        st.error("MT5 initialization failed")
+        st.stop()
+    
     mt5_time_frame = mt5_initializer.TIMEFRAMES.get(time_frame)
     if not mt5_time_frame:
         st.error(f"Invalid time frame: {time_frame}")
-        st.stop()
-    
-    if not mt5_initializer.initialize_mt5():
-        st.error("MT5 initialization failed")
         st.stop()
     
     data = data_loader.fetch_real_time_data(symbol, mt5_time_frame, 1000)
@@ -49,6 +44,9 @@ data = sentiment.calculate_sentiment(data, overbought=settings.RSI_OVERBOUGHT, o
 
 # Generate signals
 data = signal_generator.generate_signals(data)
+
+# Drop rows with missing values before training the model
+data = data.dropna()
 
 # Train or load ML model
 try:

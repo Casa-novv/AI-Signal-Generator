@@ -12,6 +12,11 @@ def train_model(data):
     features = features.dropna()
     target = target.dropna()
 
+    # Ensure features and target have the same index
+    common_index = features.index.intersection(target.index)
+    features = features.loc[common_index]
+    target = target.loc[common_index]
+
     # Train model
     model = RandomForestClassifier(n_estimators=100, random_state=42)
     model.fit(features, target)
@@ -26,5 +31,5 @@ def predict_signal(data, model):
     features = features.dropna()
 
     # Predict signals
-    data['ML_Signal'] = model.predict(features)
+    data.loc[features.index, 'ML_Signal'] = model.predict(features)
     return data
