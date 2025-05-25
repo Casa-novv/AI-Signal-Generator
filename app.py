@@ -1,10 +1,11 @@
 # app.py
 import streamlit as st
 import pandas as pd
+import plotly.graph_objects as go
 from config import settings
 from utils import mt5_initializer
 from data import data_loader
-from indicators import sma, rsi, macd, liquidity
+from indicators import sma, rsi, macd, liquidity, order_blocks
 from strategy import signal_generator
 from visualization import chart
 
@@ -24,10 +25,11 @@ num_candles = 1000
 data = data_loader.fetch_real_time_data(symbol, timeframe, num_candles)
 
 # Calculate indicators
-data = sma.calculate_sma(data, settings.SMA_WINDOW)
-data = rsi.calculate_rsi(data, settings.RSI_WINDOW)
-data = macd.calculate_macd(data, settings.MACD_FAST, settings.MACD_SLOW)
+data = sma.calculate_sma(data, windows=settings.SMA_WINDOWS)
+data = rsi.calculate_rsi(data, window=settings.RSI_WINDOW, overbought=settings.RSI_OVERBOUGHT, oversold=settings.RSI_OVERSOLD)
+data = macd.calculate_macd(data, fast=settings.MACD_FAST, slow=settings.MACD_SLOW, signal=settings.MACD_SIGNAL)
 data = liquidity.calculate_liquidity_zones(data, settings.LIQUIDITY_LOOKBACK)
+data = order_blocks.calculate_order_blocks(data, lookback=settings.ORDER_BLOCKS_LOOKBACK, threshold=settings.ORDER_BLOCKS_THRESHOLD)
 
 # Generate signals
 data = signal_generator.generate_signals(data)

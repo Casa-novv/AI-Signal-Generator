@@ -2,21 +2,15 @@
 
 # Forex symbols and timeframes
 SYMBOLS = ["EURUSD", "GBPUSD", "USDJPY", "XAUUSD"]
-TIMEFRAMES = {
-    "M1": 1,
-    "M5": 5,
-    "M15": 15,
-    "H1": 60,
-    "H4": 240,
-    "D1": 1440
-}
 
-# MT5 initialization status
-MT5_INITIALIZED = False
-
-# Lookback periods for indicators
-SMA_WINDOW = 10
+# Indicator parameters
+SMA_WINDOWS = [10, 20, 50]
 RSI_WINDOW = 14
+RSI_OVERBOUGHT = 70
+RSI_OVERSOLD = 30
 MACD_FAST = 12
 MACD_SLOW = 26
+MACD_SIGNAL = 9
 LIQUIDITY_LOOKBACK = 20
+ORDER_BLOCKS_LOOKBACK = 50
+ORDER_BLOCKS_THRESHOLD = 0.01
