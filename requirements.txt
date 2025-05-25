@@ -3,3 +3,5 @@ pandas
 plotly
 yfinance
 MetaTrader5
+scikit-learn
+joblib
