@@ -13,3 +13,5 @@ def fetch_historical_data(symbol, timeframe, num_candles):
 
 def fetch_real_time_data(symbol, timeframe, num_candles):
     return fetch_historical_data(symbol, timeframe, num_candles)
+def load_from_csv(file_path):
+    return pd.read_csv(file_path, parse_dates=['datetime'])

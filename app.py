@@ -2,27 +2,41 @@
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
-from config import settings
+from config import settings, file_paths  # Import file paths
 from utils import mt5_initializer
 from data import data_loader
 from indicators import sma, rsi, macd, liquidity, order_blocks, adx, sentiment
 from strategy import signal_generator, ml_model
 from visualization import chart
 
-# Initialize MT5
-if not mt5_initializer.initialize_mt5():
-    st.error("MT5 initialization failed")
-    st.stop()
-
 st.title("AI Forex Signal Generator")
 
 # User inputs
-symbol = st.selectbox("Select Symbol", settings.SYMBOLS)
-timeframe = mt5_initializer.TIMEFRAMES["H1"]  # Use the timeframe from mt5_initializer
-num_candles = 1000
+data_source = st.radio("Select Data Source", ["MT5", "CSV"])
+time_frame = st.selectbox("Select Time Frame", ["M1", "H1", "D1"])
 
-# Fetch data
-data = data_loader.fetch_real_time_data(symbol, timeframe, num_candles)
+if data_source == "CSV":
+    # Load historical data from CSV based on selected time frame
+    file_path = file_paths.CSV_FILE_PATHS.get(time_frame)
+    if file_path:
+        data = data_loader.load_from_csv(file_path)
+    else:
+        st.error(f"No CSV file configured for {time_frame} time frame")
+        st.stop()
+else:
+    # Load real-time data from MT5
+    symbol = st.selectbox("Select Symbol", settings.SYMBOLS)
+    mt5_time_frame = mt5_initializer.TIMEFRAMES.get(time_frame)
+    if not mt5_time_frame:
+        st.error(f"Invalid time frame: {time_frame}")
+        st.stop()
+    
+    if not mt5_initializer.initialize_mt5():
+        st.error("MT5 initialization failed")
+        st.stop()
+    
+    data = data_loader.fetch_real_time_data(symbol, mt5_time_frame, 1000)
+    mt5_initializer.shutdown_mt5()
 
 # Calculate indicators
 data = sma.calculate_sma(data, windows=settings.SMA_WINDOWS)
@@ -49,7 +63,7 @@ data = ml_model.predict_signal(data, model)
 data = signal_generator.generate_combined_signals(data)
 
 # Create and display chart
-fig = chart.create_chart(data, symbol)
+fig = chart.create_chart(data, "Backtest" if data_source == "CSV" else symbol)
 st.plotly_chart(fig)
 
 # Display signals
@@ -61,6 +75,3 @@ st.write(data[['datetime', 'ML_Signal']].tail())
 
 st.subheader("Combined Signals")
 st.write(data[['datetime', 'Combined_Signal']].tail())
-
-# Shutdown MT5
-mt5_initializer.shutdown_mt5()
