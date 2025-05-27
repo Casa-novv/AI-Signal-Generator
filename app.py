@@ -1,4 +1,10 @@
 import streamlit as st
+st.set_page_config(
+    page_title="AI Forex Signal Generator",
+    page_icon="📈",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
@@ -6,6 +12,26 @@ import numpy as np
 from datetime import datetime, timedelta
 import logging
 import os
+import sys
+
+# Add project root to path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+# Import with error handling
+try:
+    from visualization.chart import create_comprehensive_chart, create_simple_chart
+except ImportError:
+    st.error("Chart visualization module not found. Please check visualization/chart.py")
+    
+try:
+    from indicators.liquidity import calculate_liquidity
+except ImportError:
+    st.warning("Liquidity indicator not found. Some features may be limited.")
+    
+try:
+    from data.mt5_data import get_mt5_data, test_mt5_connection, get_available_symbols
+except ImportError:
+    st.warning("MT5 data module not found. Using sample data only.")
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -27,12 +53,6 @@ except ImportError as e:
 MT5_AVAILABLE = getattr(data_loader, 'MT5_AVAILABLE', False) if DATA_LOADER_AVAILABLE else False
 
 # Page configuration
-st.set_page_config(
-    page_title="AI Forex Signal Generator",
-    page_icon="📈",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
 
 def load_data_source(data_source, **kwargs):
     """Load data from specified source"""
