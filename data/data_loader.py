@@ -740,7 +740,11 @@ def load_data_from_api(symbol: str, timeframe: str, source: str = "yahoo") -> Op
     try:
         if source == "yahoo":
             try:
-                import yfinance as yf
+                try:
+                    import yfinance as yf
+                except ImportError:
+                    logger.error("yfinance not installed. Install with: pip install yfinance")
+                    return None
                 
                 # Convert symbol format for Yahoo Finance
                 if symbol == "EURUSD":
@@ -792,9 +796,6 @@ def load_data_from_api(symbol: str, timeframe: str, source: str = "yahoo") -> Op
                 logger.info(f"Successfully loaded {len(data)} bars from Yahoo Finance")
                 return data
                 
-            except ImportError:
-                logger.error("yfinance not installed. Install with: pip install yfinance")
-                return None
             except Exception as e:
                 logger.error(f"Error loading data from Yahoo Finance: {e}")
                 return None
@@ -806,7 +807,6 @@ def load_data_from_api(symbol: str, timeframe: str, source: str = "yahoo") -> Op
     except Exception as e:
         logger.error(f"Error in load_data_from_api: {e}")
         return None
-
 def create_sample_csv_files():
     """
     Create sample CSV files for testing
