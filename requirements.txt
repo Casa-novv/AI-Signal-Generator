@@ -1,7 +1,596 @@
-streamlit
-pandas
-plotly
-yfinance
-MetaTrader5
-scikit-learn
-joblib
+# Core Dependencies
+streamlit>=1.28.0
+pandas>=2.0.0
+numpy>=1.24.0
+plotly>=5.15.0
+
+# MetaTrader 5 Integration
+MetaTrader5>=5.0.45
+
+# Technical Analysis
+TA-Lib>=0.4.25
+talib-binary>=0.4.19  # Alternative for systems without TA-Lib compilation
+
+# Data Processing & Analysis
+scipy>=1.10.0
+scikit-learn>=1.3.0
+statsmodels>=0.14.0
+
+# Machine Learning (Optional - for future AI features)
+tensorflow>=2.13.0
+keras>=2.13.1
+torch>=2.0.0
+transformers>=4.30.0
+
+# Financial Data Sources
+yfinance>=0.2.18
+alpha-vantage>=2.3.1
+python-binance>=1.0.16
+ccxt>=4.0.0
+
+# Database & Storage
+sqlite3  # Built-in with Python
+sqlalchemy>=2.0.0
+redis>=4.5.0  # For caching
+pymongo>=4.4.0  # For MongoDB support
+
+# Configuration & Environment
+python-dotenv>=1.0.0
+configparser>=5.3.0
+pyyaml>=6.0
+
+# Networking & APIs
+requests>=2.31.0
+aiohttp>=3.8.0
+websockets>=11.0
+httpx>=0.24.0
+
+# Date & Time Handling
+python-dateutil>=2.8.2
+pytz>=2023.3
+arrow>=1.2.3
+
+# Logging & Monitoring
+loguru>=0.7.0
+structlog>=23.1.0
+prometheus-client>=0.17.0
+
+# Performance & Optimization
+numba>=0.57.0
+cython>=0.29.0
+joblib>=1.3.0
+psutil>=5.9.0
+
+# Visualization Enhancements
+matplotlib>=3.7.0
+seaborn>=0.12.0
+bokeh>=3.2.0
+dash>=2.11.0
+
+# File Processing
+openpyxl>=3.1.0
+xlsxwriter>=3.1.0
+python-docx>=0.8.11
+pypdf2>=3.0.0
+
+# Cryptography & Security
+cryptography>=41.0.0
+bcrypt>=4.0.0
+pyjwt>=2.8.0
+
+# Testing & Development
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-asyncio>=0.21.0
+black>=23.7.0
+flake8>=6.0.0
+mypy>=1.5.0
+pre-commit>=3.3.0
+
+# Documentation
+sphinx>=7.1.0
+sphinx-rtd-theme>=1.3.0
+
+# Deployment & Production
+gunicorn>=21.0.0
+uvicorn>=0.23.0
+docker>=6.1.0
+kubernetes>=27.2.0
+
+# Notification Services
+twilio>=8.5.0
+sendgrid>=6.10.0
+slack-sdk>=3.21.0
+telegram-bot-api>=6.7.0
+
+# Cloud Services
+boto3>=1.28.0  # AWS
+google-cloud-storage>=2.10.0  # Google Cloud
+azure-storage-blob>=12.17.0  # Azure
+
+# Additional Utilities
+tqdm>=4.65.0  # Progress bars
+rich>=13.5.0  # Rich text and beautiful formatting
+click>=8.1.0  # Command line interface
+schedule>=1.2.0  # Job scheduling
+watchdog>=3.0.0  # File system monitoring
+
+# Financial Libraries
+quantlib>=1.31
+zipline-reloaded>=2.2.0
+backtrader>=1.9.78.123
+pyfolio>=0.9.2
+
+# Alternative Data Sources (Optional)
+quandl>=3.7.0
+fredapi>=0.5.0
+pandas-datareader>=0.10.0
+investpy>=1.0.8
+
+# WebDriver for Web Scraping (Optional)
+selenium>=4.11.0
+beautifulsoup4>=4.12.0
+scrapy>=2.9.0
+
+# Image Processing (for chart analysis)
+pillow>=10.0.0
+opencv-python>=4.8.0
+
+# Audio/Video Processing (for alerts)
+pygame>=2.5.0
+pydub>=0.25.0
+
+# System Integration
+pywin32>=306; sys_platform == "win32"
+pyobjc>=9.2; sys_platform == "darwin"
+
+# Development Tools
+ipython>=8.14.0
+jupyter>=1.0.0
+notebook>=7.0.0
+jupyterlab>=4.0.0
+
+# Code Quality
+bandit>=1.7.0  # Security linting
+safety>=2.3.0  # Dependency vulnerability checking
+isort>=5.12.0  # Import sorting
+
+# Performance Profiling
+line-profiler>=4.1.0
+memory-profiler>=0.61.0
+py-spy>=0.3.14
+
+# Async Support
+asyncio  # Built-in with Python 3.7+
+aiofiles>=23.1.0
+aiodns>=3.0.0
+
+# Data Validation
+pydantic>=2.1.0
+marshmallow>=3.20.0
+cerberus>=1.3.4
+
+# Caching
+diskcache>=5.6.0
+cachetools>=5.3.0
+
+# Compression
+lz4>=4.3.0
+zstandard>=0.21.0
+
+# Serialization
+msgpack>=1.0.0
+pickle5>=0.0.12; python_version < "3.8"
+
+# Time Series Analysis
+arch>=6.2.0  # GARCH models
+pmdarima>=2.0.0  # ARIMA models
+prophet>=1.1.4  # Facebook Prophet
+seasonal>=0.3.1
+
+# Alternative ML Libraries
+xgboost>=1.7.0
+lightgbm>=4.0.0
+catboost>=1.2.0
+
+# Deep Learning Utilities
+tensorboard>=2.13.0
+wandb>=0.15.0  # Weights & Biases for experiment tracking
+
+# API Rate Limiting
+ratelimit>=2.2.0
+backoff>=2.2.0
+
+# Environment Management
+conda>=23.7.0
+pipenv>=2023.7.0
+poetry>=1.5.0
+
+# Container Support
+docker-compose>=1.29.0
+
+# Monitoring & Alerting
+sentry-sdk>=1.29.0
+datadog>=0.47.0
+newrelic>=8.9.0
+
+# Load Testing
+locust>=2.15.0
+
+# Documentation Generation
+pdoc>=14.0.0
+mkdocs>=1.5.0
+
+# Code Formatting
+autopep8>=2.0.0
+yapf>=0.40.0
+
+# Git Integration
+gitpython>=3.1.0
+
+# Configuration Management
+hydra-core>=1.3.0
+omegaconf>=2.3.0
+
+# Workflow Management
+prefect>=2.10.0
+airflow>=2.6.0
+
+# Data Pipeline
+dask>=2023.7.0
+ray>=2.5.0
+
+# Feature Engineering
+featuretools>=1.27.0
+tsfresh>=0.20.0
+
+# Model Serving
+mlflow>=2.5.0
+bentoml>=1.0.0
+seldon-core>=1.17.0
+
+# Hyperparameter Optimization
+optuna>=3.2.0
+hyperopt>=0.2.7
+scikit-optimize>=0.9.0
+
+# Explainable AI
+shap>=0.42.0
+lime>=0.2.0
+eli5>=0.13.0
+
+# Time Series Forecasting
+darts>=0.24.0
+sktime>=0.21.0
+neuralprophet>=0.6.0
+
+# Financial Risk Management
+riskfolio-lib>=4.3.0
+pyportfolioopt>=1.5.0
+empyrical>=0.5.5
+
+# Alternative Exchanges
+python-kucoin>=2.1.0
+python-okx>=1.0.0
+ftx>=1.0.0
+
+# Blockchain Integration
+web3>=6.8.0
+eth-account>=0.9.0
+bitcoin>=1.1.42
+
+# Real-time Data Streaming
+kafka-python>=2.0.0
+pika>=1.3.0  # RabbitMQ
+redis-py-cluster>=2.1.0
+
+# Geographic Data (for market sessions)
+geoip2>=4.7.0
+geopy>=2.3.0
+
+# Calendar & Market Hours
+pandas-market-calendars>=4.3.0
+trading-calendars>=2.1.0
+
+# Economic Data
+fredapi>=0.5.0
+oecd>=0.2.5
+worldbank>=0.11.0
+
+# News & Sentiment Analysis
+newsapi-python>=0.2.6
+textblob>=0.17.0
+vadersentiment>=3.3.0
+newspaper3k>=0.2.8
+
+# Social Media Integration
+tweepy>=4.14.0
+praw>=7.7.0  # Reddit API
+facebook-sdk>=3.1.0
+
+# Email Integration
+imaplib  # Built-in
+smtplib  # Built-in
+email-validator>=2.0.0
+
+# File Monitoring
+watchfiles>=0.19.0
+
+# Process Management
+supervisor>=4.2.0
+
+# System Monitoring
+py-cpuinfo>=9.0.0
+GPUtil>=1.4.0
+
+# Network Utilities
+ping3>=4.0.0
+speedtest-cli>=2.1.0
+
+# Backup & Recovery
+duplicity>=0.8.0
+restic>=0.16.0
+
+# Development Environment
+python-decouple>=3.8
+environs>=9.5.0
+
+# Code Analysis
+vulture>=2.7  # Dead code finder
+radon>=6.0.0  # Code complexity
+xenon>=0.9.0  # Code complexity monitoring
+
+# Documentation Testing
+doctest  # Built-in
+doctestplus>=1.0.0
+
+# Performance Testing
+pytest-benchmark>=4.0.0
+pytest-xdist>=3.3.0
+
+# Memory Management
+pympler>=0.9
+tracemalloc  # Built-in with Python 3.4+
+
+# Debugging
+pdb  # Built-in
+ipdb>=0.13.0
+pudb>=2022.1.3
+
+# Profiling
+cProfile  # Built-in
+snakeviz>=2.2.0
+
+# Static Analysis
+pylint>=2.17.0
+pycodestyle>=2.11.0
+pydocstyle>=6.3.0
+
+# Security
+bandit>=1.7.0
+safety>=2.3.0
+semgrep>=1.32.0
+
+# License Checking
+pip-licenses>=4.3.0
+
+# Dependency Management
+pip-tools>=7.1.0
+pipdeptree>=2.9.0
+
+# Virtual Environment
+virtualenv>=20.24.0
+virtualenvwrapper>=4.8.4
+
+# Package Building
+setuptools>=68.0.0
+wheel>=0.41.0
+build>=0.10.0
+twine>=4.0.0
+
+# Cross-platform Compatibility
+pathlib  # Built-in with Python 3.4+
+os  # Built-in
+sys  # Built-in
+platform  # Built-in
+
+# Internationalization
+babel>=2.12.0
+gettext  # System dependency
+
+# Timezone Handling
+zoneinfo  # Built-in with Python 3.9+
+backports.zoneinfo>=0.2.1; python_version < "3.9"
+
+# UUID Generation
+uuid  # Built-in
+
+# Regular Expressions
+re  # Built-in
+regex>=2023.6.0  # Enhanced regex
+
+# JSON Handling
+json  # Built-in
+ujson>=5.8.0  # Ultra-fast JSON
+orjson>=3.9.0  # Fast JSON
+
+# XML Processing
+xml  # Built-in
+lxml>=4.9.0
+xmltodict>=0.13.0
+
+# CSV Processing
+csv  # Built-in
+unicodecsv>=0.14.0
+
+# URL Processing
+urllib  # Built-in
+furl>=2.1.0
+
+# Base64 Encoding
+base64  # Built-in
+
+# Hash Functions
+hashlib  # Built-in
+xxhash>=3.2.0
+
+# Random Number Generation
+random  # Built-in
+secrets  # Built-in
+
+# Mathematical Functions
+math  # Built-in
+decimal  # Built-in
+fractions  # Built-in
+statistics  # Built-in
+
+# Collections
+collections  # Built-in
+itertools  # Built-in
+functools  # Built-in
+
+# Threading & Multiprocessing
+threading  # Built-in
+multiprocessing  # Built-in
+concurrent.futures  # Built-in
+queue  # Built-in
+
+# Subprocess Management
+subprocess  # Built-in
+shlex  # Built-in
+
+# Signal Handling
+signal  # Built-in
+
+# Garbage Collection
+gc  # Built-in
+weakref  # Built-in
+
+# Context Management
+contextlib  # Built-in
+
+# Abstract Base Classes
+abc  # Built-in
+
+# Data Classes
+dataclasses  # Built-in with Python 3.7+
+
+# Type Hints
+typing  # Built-in
+typing_extensions>=4.7.0
+
+# Enum Support
+enum  # Built-in
+
+# Copy Operations
+copy  # Built-in
+
+# Pickle Support
+pickle  # Built-in
+dill>=0.3.0  # Extended pickling
+
+# Compression
+gzip  # Built-in
+zipfile  # Built-in
+tarfile  # Built-in
+bz2  # Built-in
+lzma  # Built-in
+
+# Temporary Files
+tempfile  # Built-in
+shutil  # Built-in
+
+# File Operations
+glob  # Built-in
+fnmatch  # Built-in
+
+# String Operations
+string  # Built-in
+textwrap  # Built-in
+
+# Warnings
+warnings  # Built-in
+
+# Inspection
+inspect  # Built-in
+
+# Importlib
+importlib  # Built-in
+
+# Site Configuration
+site  # Built-in
+
+# System Configuration
+sysconfig  # Built-in
+
+# Traceback
+traceback  # Built-in
+
+# Code Objects
+code  # Built-in
+dis  # Built-in
+
+# AST
+ast  # Built-in
+
+# Keyword
+keyword  # Built-in
+
+# Token
+token  # Built-in
+tokenize  # Built-in
+
+# Parser
+parser  # Built-in (deprecated in Python 3.9+)
+
+# Symbol Table
+symbol  # Built-in
+symtable  # Built-in
+
+# Compiler
+py_compile  # Built-in
+compileall  # Built-in
+
+# Distribution Utilities
+distutils  # Built-in (deprecated)
+packaging>=23.1
+
+# Unit Testing
+unittest  # Built-in
+unittest.mock  # Built-in
+
+# Documentation Testing
+doctest  # Built-in
+
+# Profiling
+profile  # Built-in
+pstats  # Built-in
+
+# Tracing
+trace  # Built-in
+
+# Debugging
+bdb  # Built-in
+cmd  # Built-in
+
+# Runtime Services
+atexit  # Built-in
+tracemalloc  # Built-in
+faulthandler  # Built-in
+
+# Custom Python Interpreter
+code  # Built-in
+codeop  # Built-in
+
+# Import Hooks
+importlib.util  # Built-in
+importlib.machinery  # Built-in
+
+# Execution Model
+runpy  # Built-in
+
+# Site Packages
+site  # Built-in
+
+# Development Mode
+__future__  # Built-in
